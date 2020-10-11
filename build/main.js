@@ -20,8 +20,9 @@ class Swissglider1adapter extends utils.Adapter {
         super(Object.assign(Object.assign({}, options), { name: 'swissglider1adapter' }));
         this.on('ready', this.onReady.bind(this));
         this.on('stateChange', this.onStateChange.bind(this));
+        // this.on('stateChange', this.onStateChange.bind(this.config.mdnsSearchTime));
         // this.on('objectChange', this.onObjectChange.bind(this));
-        // this.on('message', this.onMessage.bind(this));
+        this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
     }
     /**
@@ -32,8 +33,10 @@ class Swissglider1adapter extends utils.Adapter {
             // Initialize your adapter here
             // The adapters config (in the instance object everything under the attribute "native") is accessible via
             // this.config:
+            this.log.info('Hallo1');
             this.log.info('config option1: ' + this.config.option1);
             this.log.info('config option2: ' + this.config.option2);
+            this.log.error('config mdnsSearchTime: ' + this.config.mdnsSearchTime);
             /*
             For every state in the system there has to be also an object of type state
             Here a simple template for a boolean variable named "testVariable"
@@ -115,6 +118,30 @@ class Swissglider1adapter extends utils.Adapter {
         else {
             // The state was deleted
             this.log.info(`state ${id} deleted`);
+        }
+    }
+    // If you need to accept messages in your adapter, uncomment the following block and the corresponding line in the constructor.
+    // /**
+    //  * Some message was sent to this instance over message box. Used by email, pushover, text2speech, ...
+    //  * Using this method requires "common.message" property to be set to true in io-package.json
+    //  */
+    onMessage(obj) {
+        this.log.error('New Message');
+        if (typeof obj === 'object' && obj.message) {
+            if (obj.command === 'helloCommand') {
+                this.log.warn('Hello Command with the following message arrived: ' + obj.message);
+                if (obj.callback) {
+                    this.log.error('sent to callback');
+                    this.sendTo(obj.from, obj.command, 'Message received', obj.callback);
+                }
+            }
+            if (obj.command === 'send') {
+                // e.g. send email or pushover or whatever
+                this.log.info('send command');
+                // Send response in callback if required
+                if (obj.callback)
+                    this.sendTo(obj.from, obj.command, 'Message received', obj.callback);
+            }
         }
     }
 }

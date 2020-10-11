@@ -13,7 +13,7 @@
 	"dataSource": "push",
 	"connectionIndicator": "no",
 	"language": "TypeScript",
-	"adminReact": "yes",
+	"adminReact": "no",
 	"tools": ["ESLint", "Prettier", "code coverage"],
 	"indentation": "Tab",
 	"quotes": "single",

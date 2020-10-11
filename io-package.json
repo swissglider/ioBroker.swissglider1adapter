@@ -52,13 +52,15 @@
 		"readme": "https://github.com/swissglider/ioBroker.swissglider1adapter/blob/master/README.md",
 		"loglevel": "info",
 		"mode": "daemon",
-		"type": "iot-systems",
+		"type": "general",
 		"highlight": true,
 		"compact": true,
 		"connectionType": "local",
 		"dataSource": "push",
 		"materialize": true,
 		"localLink": "%web_protocol%://%ip%:%web_port%/swissglider1adapter/test.html",
+		"messagebox": true,
+		"subscribe": "messagebox",
 		"dependencies": [
 			{
 				"js-controller": ">=2.0.0",
@@ -74,8 +76,9 @@
 		}
 	},
 	"native": {
-		"option1": true,
-		"option2": "42"
+		"state1ToShow": "",
+		"state2ToShow": "",
+		"objectToShow": ""
 	},
 	"objects": [],
 	"instanceObjects": []
