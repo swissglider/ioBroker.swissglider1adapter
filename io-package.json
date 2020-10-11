@@ -53,15 +53,25 @@
 		"loglevel": "info",
 		"mode": "daemon",
 		"type": "iot-systems",
+		"highlight": true,
 		"compact": true,
 		"connectionType": "local",
 		"dataSource": "push",
 		"materialize": true,
+		"localLink": "%web_protocol%://%ip%:%web_port%/swissglider1adapter/test.html",
 		"dependencies": [
 			{
-				"js-controller": ">=2.0.0"
+				"js-controller": ">=2.0.0",
+				"web": ">=3.0.12"
 			}
-		]
+		],
+		"welcomeScreen": {
+			"link": "swissglider1adapter/test.html",
+			"name": "SG1Adapter",
+			"img": "vis/img/favicon.png",
+			"color": "#ffe9c8",
+			"order": 0
+		}
 	},
 	"native": {
 		"option1": true,
