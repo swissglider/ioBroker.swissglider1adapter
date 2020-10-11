@@ -1,0 +1,72 @@
+{
+	"common": {
+		"name": "swissglider1adapter",
+		"version": "0.0.1",
+		"news": {
+			"0.0.1": {
+				"en": "initial release",
+				"de": "Erstveröffentlichung",
+				"ru": "Начальная версия",
+				"pt": "lançamento inicial",
+				"nl": "Eerste uitgave",
+				"fr": "Première version",
+				"it": "Versione iniziale",
+				"es": "Versión inicial",
+				"pl": "Pierwsze wydanie",
+				"zh-cn": "首次出版"
+			}
+		},
+		"title": "Swisglider 1st",
+		"titleLang": {
+			"en": "Swisglider 1st",
+			"de": "Swisglider 1st",
+			"ru": "Swisglider 1-й",
+			"pt": "Swisglider 1st",
+			"nl": "Swisglider 1e",
+			"fr": "Swisglider 1er",
+			"it": "Swisglider 1st",
+			"es": "Swisglider 1st",
+			"pl": "Swisglider 1st",
+			"zh-cn": "滑翔伞第一"
+		},
+		"desc": {
+			"en": "This is the x time 1st adapter from swissglider to test",
+			"de": "Dies ist der x-malige 1. Adapter vom Schweizer zum Testen",
+			"ru": "Это первый адаптер от swissglider для тестирования.",
+			"pt": "Esta é a primeira vez x adaptador do swissglider para testar",
+			"nl": "Dit is de x keer de eerste adapter van swissglider om te testen",
+			"fr": "C'est le premier adaptateur de swissglider à tester",
+			"it": "Questo è il primo adattatore di swissglider da testare",
+			"es": "Este es el primer adaptador x vez de swissglider para probar",
+			"pl": "Jest to pierwszy adapter do testowania x time ze swissglider",
+			"zh-cn": "这是瑞士滑翔机测试的x时间1st适配器"
+		},
+		"authors": ["Swissglider <npm@swissglider.com>"],
+		"keywords": ["test", "angular", "web", "senTo", "homeOverview"],
+		"license": "MIT",
+		"platform": "Javascript/Node.js",
+		"main": "build/main.js",
+		"icon": "swissglider1adapter.png",
+		"enabled": true,
+		"extIcon": "https://raw.githubusercontent.com/swissglider/ioBroker.swissglider1adapter/master/admin/swissglider1adapter.png",
+		"readme": "https://github.com/swissglider/ioBroker.swissglider1adapter/blob/master/README.md",
+		"loglevel": "info",
+		"mode": "daemon",
+		"type": "iot-systems",
+		"compact": true,
+		"connectionType": "local",
+		"dataSource": "push",
+		"materialize": true,
+		"dependencies": [
+			{
+				"js-controller": ">=2.0.0"
+			}
+		]
+	},
+	"native": {
+		"option1": true,
+		"option2": "42"
+	},
+	"objects": [],
+	"instanceObjects": []
+}
