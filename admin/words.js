@@ -74,4 +74,16 @@ systemDictionary = {
 		pl: 'Send a Hello to the adapter PL',
 		'zh-cn': 'Send a Hello to the adapter ZH-CN',
 	},
+	actualValueTemp: {
+		en: 'Object ID Actual value EN',
+		de: 'Id von dem selektierten Status !',
+		ru: 'Object ID Actual value RU',
+		pt: 'Object ID Actual value PT',
+		nl: 'Object ID Actual value NL',
+		fr: 'Object ID Actual value FR',
+		it: 'Object ID Actual value IT',
+		es: 'Object ID Actual value ES',
+		pl: 'Object ID Actual value PL',
+		'zh-cn': 'Object ID Actual value ZH-CN',
+	},
 };
