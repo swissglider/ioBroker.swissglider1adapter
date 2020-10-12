@@ -62,62 +62,13 @@
 					}
 					onChange(false);
 				});
-
-				if (settings['testIDs'] && Array.isArray(settings['testIDs']) && settings['testIDs'].length > 0) {
-					settings['testIDs'].forEach((value) => {
-						$('.collection.testCollection').append(
-							'<li class="collection-item">' +
-								'<i class="material-icons edit-item">build_circle</i>' +
-								'<span class="testID">' +
-								value +
-								'</span>' +
-								'<a href="#!" class="remove-item secondary-content"><i class="material-icons mat-red-text">remove_circle_outline</i></a>' +
-								'</li>',
-						);
-					});
-				}
-
 				M.updateTextFields(); // function Materialize.updateTextFields(); to reinitialize all the Materialize labels on the page if you are dynamically adding inputs.
 
-				$('span.testID').on('click', function (event) {
-					initSelectId(function (sid) {
-						sid.selectId('show', event.target.innerText, function (newId) {
-							if (newId != event.target.innerText) {
-								event.target.innerText = newId;
-								onChange();
-							}
-						});
-					});
-				});
-
-				$('.add-element').click(function () {
+				$('#actualValueTempDialogPopUp').on('click', function () {
 					initSelectId(function (sid) {
 						sid.selectId('show', $('#actualValueTemp').val(), function (newId) {
-							$('.collection.testCollection').append(
-								'<li class="collection-item">' +
-									'<i class="material-icons edit-item">build_circle</i>' +
-									'<span class="testID">' +
-									newId +
-									'</span>' +
-									'<a href="#!" class="remove-item secondary-content"><i class="material-icons mat-red-text">remove_circle_outline</i></a>' +
-									'</li>',
-							);
-							onChange();
-						});
-					});
-				});
-
-				$('.collection').on('click', '.remove-item', function () {
-					$(this).closest('li').remove();
-					onChange();
-				});
-
-				$('.collection').on('click', '.edit-item', function () {
-					var $this = $(this);
-					initSelectId(function (sid) {
-						sid.selectId('show', $this[0].parentNode.childNodes[1].innerText, function (newId) {
-							if (newId != $this[0].parentNode.childNodes[1].innerText) {
-								$this[0].parentNode.childNodes[1].innerText = newId;
+							if (newId != $('#actualValueTemp').val()) {
+								$('#actualValueTemp').val(newId);
 								onChange();
 							}
 						});
@@ -138,20 +89,13 @@
 						obj[$this.attr('id')] = $this.val();
 					}
 				});
-				var testIDs = [];
-				$('span.testID').each(function (index, value) {
-					testIDs.push($(value).text());
-				});
-				obj['testIDs'] = testIDs;
 				callback(obj);
 			}
-
 			function send_new_Message() {
 				sendTo(null, 'helloCommand', 'Hello Message', (message) => {
 					alert('Message send with result: ' + message);
 				});
 			}
-
 			var selectId;
 
 			function initSelectId(callback) {
@@ -232,12 +176,20 @@
 						<span class="translate">objectToShow</span>
 					</div>
 				</div>
-			</div>
-			<div class="section container">
-				<ul class="collection testCollection"></ul>
-				<button class="btn add-element">
-					<i class="material-icons left">add_circle_outline</i><span class="translate">addNewState</span>
-				</button>
+				<div class="row">
+					<!-- <input class="value" id="object1" />
+					<button id="select1">...</button> -->
+					<div class="col s6 l4 input-field">
+						<input type="text" class="value" id="actualValueTemp" />
+						<label for="actualValueTemp" class="translate"></label>
+						<span class="translate">actualValueTemp</span>
+					</div>
+					<div class="col s1 m2 l1">
+						<a id="actualValueTempDialogPopUp" class="btn"
+							><i class="material-icons">add_circle_outline</i><span></span
+						></a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>
