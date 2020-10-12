@@ -33,10 +33,10 @@ class Swissglider1adapter extends utils.Adapter {
             // Initialize your adapter here
             // The adapters config (in the instance object everything under the attribute "native") is accessible via
             // this.config:
-            this.log.info('Hallo1');
-            this.log.info('config option1: ' + this.config.option1);
-            this.log.info('config option2: ' + this.config.option2);
-            this.log.error('config mdnsSearchTime: ' + this.config.mdnsSearchTime);
+            this.log.warn('config state1ToShow: ' + this.config.state1ToShow);
+            this.log.warn('config state2ToShow: ' + this.config.state2ToShow);
+            this.log.warn('config objectToShow: ' + this.config.objectToShow);
+            this.log.warn('config testIDs: ' + this.config.testIDs);
             /*
             For every state in the system there has to be also an object of type state
             Here a simple template for a boolean variable named "testVariable"
