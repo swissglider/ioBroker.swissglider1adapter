@@ -80,7 +80,7 @@
 				M.updateTextFields(); // function Materialize.updateTextFields(); to reinitialize all the Materialize labels on the page if you are dynamically adding inputs.
 
 				$('span.testID').on('click', function (event) {
-					initSelectId(function (sid) {
+					initSelectId(true, function (sid) {
 						sid.selectId('show', event.target.innerText, function (newId) {
 							if (newId != event.target.innerText) {
 								event.target.innerText = newId;
@@ -91,17 +91,22 @@
 				});
 
 				$('.add-element').click(function () {
-					initSelectId(function (sid) {
-						sid.selectId('show', $('#actualValueTemp').val(), function (newId) {
-							$('.collection.testCollection').append(
-								'<li class="collection-item">' +
-									'<i class="material-icons edit-item">build_circle</i>' +
-									'<span class="testID">' +
-									newId +
-									'</span>' +
-									'<a href="#!" class="remove-item secondary-content"><i class="material-icons mat-red-text">remove_circle_outline</i></a>' +
-									'</li>',
-							);
+					initSelectId(false, function (sid) {
+						sid.selectId('show', $('#actualValueTemp').val(), function (newIds) {
+							if (!Array.isArray(newIds)) {
+								newIds = [newIds];
+							}
+							newIds.forEach((newId) => {
+								$('.collection.testCollection').append(
+									'<li class="collection-item">' +
+										'<i class="material-icons edit-item">build_circle</i>' +
+										'<span class="testID">' +
+										newId +
+										'</span>' +
+										'<a href="#!" class="remove-item secondary-content"><i class="material-icons mat-red-text">remove_circle_outline</i></a>' +
+										'</li>',
+								);
+							});
 							onChange();
 						});
 					});
@@ -114,7 +119,7 @@
 
 				$('.collection').on('click', '.edit-item', function () {
 					var $this = $(this);
-					initSelectId(function (sid) {
+					initSelectId(true, function (sid) {
 						sid.selectId('show', $this[0].parentNode.childNodes[1].innerText, function (newId) {
 							if (newId != $this[0].parentNode.childNodes[1].innerText) {
 								$this[0].parentNode.childNodes[1].innerText = newId;
@@ -154,13 +159,13 @@
 
 			var selectId;
 
-			function initSelectId(callback) {
+			function initSelectId(noMultiselect, callback) {
 				if (selectId) {
 					return callback(selectId);
 				}
 				socket.emit('getObjects', function (err, objs) {
-					selectId = $('#dialog-select-member').selectId('init', {
-						noMultiselect: true,
+					selectIds = $('#dialog-select-member').selectId('init', {
+						noMultiselect: noMultiselect,
 						objects: objs,
 						imgPath: '../../lib/css/fancytree/',
 						// filter: { type: 'adapter' },
@@ -188,7 +193,7 @@
 						},
 						columns: ['image', 'name', 'role', 'room'],
 					});
-					callback(selectId);
+					callback(selectIds);
 				});
 			}
 		</script>
